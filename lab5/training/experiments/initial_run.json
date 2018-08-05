@@ -1,0 +1,31 @@
+{
+    "experiment_group": "Sample Experiments",
+    "experiments": [
+        {
+            "dataset": "IamLinesDataset",
+            "model": "LineModelCtc",
+            "network": "jeremynet",
+            "network_args": {
+                "conv_layers": 2,
+                "bidirectional": True
+            },
+            "train_args": {
+                "batch_size": 256,
+                "epochs": 400
+            }
+        },
+        {
+            "dataset": "IamLinesDataset",
+            "model": "LineModelCtc",
+            "network": "jeremynet",
+            "network_args": {
+                "conv_layers": 3,
+                "bidirectional": False
+            },
+            "train_args": {
+                "batch_size": 256,
+                "epochs": 400
+            }
+        }
+    ]
+}

@@ -2,7 +2,7 @@ from time import time
 from typing import Callable, Optional, Union, Tuple
 
 import numpy as np
-from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
+from tensorflow.keras.callbacks import EarlyStopping, TensorBoard, ModelCheckpoint
 from tensorflow.keras.optimizers import RMSprop
 ##### Hide lines below until Lab 4
 import wandb
@@ -20,9 +20,11 @@ GPU_UTIL_SAMPLER = True
 
 def train_model(model: Model, dataset: Dataset, epochs: int, batch_size: int, gpu_ind: Optional[int]=None, use_wandb=False) -> Model:
     callbacks = []
+    
+    callbacks.append(ModelCheckpoint('best.h5', save_best_only=True))
 
     if EARLY_STOPPING:
-        early_stopping = EarlyStopping(monitor='val_loss', min_delta=0.01, patience=3, verbose=1, mode='auto')
+        early_stopping = EarlyStopping(monitor='val_loss', min_delta=0.01, patience=8, verbose=1, mode='auto')
         callbacks.append(early_stopping)
 
     if GPU_UTIL_SAMPLER and gpu_ind is not None:

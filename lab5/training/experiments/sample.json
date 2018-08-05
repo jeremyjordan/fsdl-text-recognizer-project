@@ -2,33 +2,33 @@
     "experiment_group": "Sample Experiments",
     "experiments": [
         {
-            "dataset": "EmnistDataset",
-            "model": "CharacterModel",
-            "network": "mlp",
+            "dataset": "IamLinesDataset",
+            "model": "LineModelCtc",
+            "network": "line_lstm_ctc",
             "network_args": {
-                "num_layers": 2
+                "window_width": 14,
+                "window_stride": 2,
+                "lstm_dim": 64,
+                "bidirectional": 1
             },
             "train_args": {
-                "batch_size": 256
+                "batch_size": 64,
+                "epochs": 60
             }
         },
         {
-            "dataset": "EmnistDataset",
-            "model": "CharacterModel",
-            "network": "mlp",
+            "dataset": "IamLinesDataset",
+            "model": "LineModelCtc",
+            "network": "line_lstm_ctc",
             "network_args": {
-                "num_layers": 4
+                "window_width": 12,
+                "window_stride": 4,
+                "lstm_dim": 128,
+                "bidirectional": 0
             },
             "train_args": {
-                "batch_size": 256
-            }
-        },
-        {
-            "dataset": "EmnistDataset",
-            "model": "CharacterModel",
-            "network": "lenet",
-            "train_args": {
-                "batch_size": 128
+                "batch_size": 32,
+                "epochs": 60
             }
         }
     ]
